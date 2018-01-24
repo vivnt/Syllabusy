@@ -1,0 +1,6 @@
+framework module Pods_Syllabusy {
+  umbrella header "Pods-Syllabusy-umbrella.h"
+
+  export *
+  module * { export * }
+}
