@@ -2,24 +2,37 @@
 //  ViewController.swift
 //  Syllabusy
 //
-//  Created by Vivian Tran on 1/24/18.
+//  Created by Vivian Tran on 1/31/18.
 //  Copyright © 2018 Vivian Tran. All rights reserved.
 //
 
 import UIKit
+import TesseractOCR
 
-class ViewController: UIViewController {
-
+class ViewController: UIViewController, G8TesseractDelegate {
+    
+    @IBOutlet weak var textView: UITextView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        var tesseract:G8Tesseract = G8Tesseract(language:"eng")
+        //tesseract.language = "eng+ita"
+        tesseract.delegate = self
+        tesseract.image = UIImage(named: "image_sample.jpg")?.g8_blackAndWhite()
+        tesseract.recognize()
+        
+        textView.text = tesseract.recognizedText
+        print(tesseract.recognizedText)
+        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-
-
+    
+    func shouldCancelImageRecognitionForTesseract(tesseract: G8Tesseract!) -> Bool {
+        return false // return true if you need to interrupt tesseract before it finishes
+    }
 }
 

@@ -8,10 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		B391E3FB20191CDC004279E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B391E3FA20191CDC004279E0 /* AppDelegate.swift */; };
-		B391E3FD20191CDC004279E0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B391E3FC20191CDC004279E0 /* ViewController.swift */; };
 		B391E40020191CDC004279E0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B391E3FE20191CDC004279E0 /* Main.storyboard */; };
 		B391E40220191CDC004279E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B391E40120191CDC004279E0 /* Assets.xcassets */; };
 		B391E40520191CDC004279E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B391E40320191CDC004279E0 /* LaunchScreen.storyboard */; };
+		B391E40D20192518004279E0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B391E40C20192517004279E0 /* GoogleService-Info.plist */; };
+		B3A7B679202229BE0021D2EA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A7B678202229BE0021D2EA /* ViewController.swift */; };
+		B3A7B67F202238190021D2EA /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = B3A7B67E202238190021D2EA /* tessdata */; };
 		F6CC6A969F8B452E1D03DE8A /* Pods_Syllabusy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A6F4CE22F6EFDD004ED5371 /* Pods_Syllabusy.framework */; };
 /* End PBXBuildFile section */
 
@@ -19,11 +21,13 @@
 		4A6F4CE22F6EFDD004ED5371 /* Pods_Syllabusy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Syllabusy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B391E3F720191CDC004279E0 /* Syllabusy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Syllabusy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B391E3FA20191CDC004279E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B391E3FC20191CDC004279E0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B391E3FF20191CDC004279E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B391E40120191CDC004279E0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B391E40420191CDC004279E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B391E40620191CDC004279E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B391E40C20192517004279E0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B3A7B678202229BE0021D2EA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B3A7B67E202238190021D2EA /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
 		CAF2150A8CC27569D759C395 /* Pods-Syllabusy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Syllabusy.release.xcconfig"; path = "Pods/Target Support Files/Pods-Syllabusy/Pods-Syllabusy.release.xcconfig"; sourceTree = "<group>"; };
 		D821C27C9425FE035939EBCD /* Pods-Syllabusy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Syllabusy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Syllabusy/Pods-Syllabusy.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -60,10 +64,12 @@
 		B391E3EE20191CDC004279E0 = {
 			isa = PBXGroup;
 			children = (
-				B391E3F920191CDC004279E0 /* Syllabusy */,
-				B391E3F820191CDC004279E0 /* Products */,
-				80B8498FCBC0AB2CEA716DC8 /* Pods */,
+				B3A7B67E202238190021D2EA /* tessdata */,
+				B391E40C20192517004279E0 /* GoogleService-Info.plist */,
 				4A6F90A2AA85608647B4C789 /* Frameworks */,
+				80B8498FCBC0AB2CEA716DC8 /* Pods */,
+				B391E3F820191CDC004279E0 /* Products */,
+				B391E3F920191CDC004279E0 /* Syllabusy */,
 			);
 			sourceTree = "<group>";
 		};
@@ -79,11 +85,11 @@
 			isa = PBXGroup;
 			children = (
 				B391E3FA20191CDC004279E0 /* AppDelegate.swift */,
-				B391E3FC20191CDC004279E0 /* ViewController.swift */,
 				B391E3FE20191CDC004279E0 /* Main.storyboard */,
 				B391E40120191CDC004279E0 /* Assets.xcassets */,
 				B391E40320191CDC004279E0 /* LaunchScreen.storyboard */,
 				B391E40620191CDC004279E0 /* Info.plist */,
+				B3A7B678202229BE0021D2EA /* ViewController.swift */,
 			);
 			path = Syllabusy;
 			sourceTree = "<group>";
@@ -151,6 +157,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B391E40520191CDC004279E0 /* LaunchScreen.storyboard in Resources */,
+				B391E40D20192518004279E0 /* GoogleService-Info.plist in Resources */,
+				B3A7B67F202238190021D2EA /* tessdata in Resources */,
 				B391E40220191CDC004279E0 /* Assets.xcassets in Resources */,
 				B391E40020191CDC004279E0 /* Main.storyboard in Resources */,
 			);
@@ -182,11 +190,13 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Syllabusy/Pods-Syllabusy-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/TesseractOCRiOS/TesseractOCR.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TesseractOCR.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -219,7 +229,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B391E3FD20191CDC004279E0 /* ViewController.swift in Sources */,
+				B3A7B679202229BE0021D2EA /* ViewController.swift in Sources */,
 				B391E3FB20191CDC004279E0 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

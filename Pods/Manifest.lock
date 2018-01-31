@@ -19,9 +19,11 @@ PODS:
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
+  - TesseractOCRiOS (4.0.0)
 
 DEPENDENCIES:
   - Firebase/Core
+  - TesseractOCRiOS (= 4.0.0)
 
 SPEC CHECKSUMS:
   Firebase: 2721056b8885eef90233b03f37be64358d35d262
@@ -30,7 +32,8 @@ SPEC CHECKSUMS:
   FirebaseInstanceID: 81df5805a08001e69138664bdd02c6719a9ac80f
   GoogleToolboxForMac: 2501e2ad72a52eb3dfe7bd9aee7dad11b858bd20
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
+  TesseractOCRiOS: 90638afbe43d082433f2e76b384c7901d23956df
 
-PODFILE CHECKSUM: e7f7d1237f6f1d27558db9237a28f8843da3fe69
+PODFILE CHECKSUM: f05d03aa699a11aaa40a0ef7afa81642ec086c23
 
 COCOAPODS: 1.4.0.rc.1
