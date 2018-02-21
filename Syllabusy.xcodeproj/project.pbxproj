@@ -84,12 +84,12 @@
 		B391E3F920191CDC004279E0 /* Syllabusy */ = {
 			isa = PBXGroup;
 			children = (
+				B391E40620191CDC004279E0 /* Info.plist */,
 				B391E3FA20191CDC004279E0 /* AppDelegate.swift */,
-				B391E3FE20191CDC004279E0 /* Main.storyboard */,
+				B3A7B678202229BE0021D2EA /* ViewController.swift */,
 				B391E40120191CDC004279E0 /* Assets.xcassets */,
 				B391E40320191CDC004279E0 /* LaunchScreen.storyboard */,
-				B391E40620191CDC004279E0 /* Info.plist */,
-				B3A7B678202229BE0021D2EA /* ViewController.swift */,
+				B391E3FE20191CDC004279E0 /* Main.storyboard */,
 			);
 			path = Syllabusy;
 			sourceTree = "<group>";
