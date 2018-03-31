@@ -19,6 +19,8 @@ class SYLBAssignmentsViewController: UIViewController, UITableViewDataSource, UI
         checkEventKitAuthorization();
     }
     
+    // Checks if Event Kit has authorization
+    // TODO: Change
     func checkEventKitAuthorization() {
         let status = EKEventStore.authorizationStatus(for: EKEntityType.event)
         
@@ -35,6 +37,7 @@ class SYLBAssignmentsViewController: UIViewController, UITableViewDataSource, UI
         }
     }
     
+    // TODO: Change
     func requestAccessToCalendar() {
         eventStore.requestAccess(to: EKEntityType.event, completion: {
             (accessGranted: Bool, error: Error?) in
@@ -46,6 +49,7 @@ class SYLBAssignmentsViewController: UIViewController, UITableViewDataSource, UI
         })
     }
     
+    // Grabs the list of calendars
     func loadCalendars() {
         self.calendars = eventStore.calendars(for: EKEntityType.event)
     }
@@ -59,12 +63,10 @@ class SYLBAssignmentsViewController: UIViewController, UITableViewDataSource, UI
         return 100
     }
     
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let calendars = self.calendars {
             return calendars.count
         }
-        
         return 0
     }
     

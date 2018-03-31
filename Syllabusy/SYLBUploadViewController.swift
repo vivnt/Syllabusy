@@ -13,6 +13,7 @@ class SYLBUploadViewController: UIViewController {
     let eventStore = EKEventStore()
     var calendars: [EKCalendar]?
     
+    // Created a button to test if calendar events are adding correctly.
     @IBAction func addButton(_ sender: Any) {
         let calendars = eventStore.calendars(for: EKEntityType.event)
         let calendar = calendars[0]
@@ -35,9 +36,10 @@ class SYLBUploadViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-       
+        
     }
     
+    // Gets the date object from inputted text 
     func getDateObject(month: Int, day: Int, year: Int, hour: Int, min: Int) -> Date {
         var dateComponents = DateComponents()
         dateComponents.year = year
