@@ -6,7 +6,7 @@ target 'Syllabusy' do
   use_frameworks!
 
   # Pods for Syllabusy
-  pod 'Firebase/Core'
   pod 'TesseractOCRiOS', '4.0.0'
+  pod 'CropViewController'
   
 end

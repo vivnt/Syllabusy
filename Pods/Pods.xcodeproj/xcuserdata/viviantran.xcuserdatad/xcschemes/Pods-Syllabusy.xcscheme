@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "51C8C0F392D7EDB49BA26B2A24CFC36A"
+               BlueprintIdentifier = "7D61DF3E6B084D22C99BA18F43B9DC0C"
                BuildableName = "Pods_Syllabusy.framework"
                BlueprintName = "Pods-Syllabusy"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -26,7 +26,6 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
@@ -37,7 +36,6 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      language = ""
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
@@ -47,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "51C8C0F392D7EDB49BA26B2A24CFC36A"
+            BlueprintIdentifier = "7D61DF3E6B084D22C99BA18F43B9DC0C"
             BuildableName = "Pods_Syllabusy.framework"
             BlueprintName = "Pods-Syllabusy"
             ReferencedContainer = "container:Pods.xcodeproj">
