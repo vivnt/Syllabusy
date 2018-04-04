@@ -10,4 +10,10 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBAction func uploadButtonTapped(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "SYLBUpload", bundle: nil)
+        let navVC = storyboard.instantiateViewController(withIdentifier: "navController")
+        
+        self.present(navVC, animated: true, completion: nil)
+    }
 }

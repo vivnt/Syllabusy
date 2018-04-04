@@ -6,14 +6,11 @@
 //  Copyright © 2018 Vivian Tran. All rights reserved.
 //
 
+// Used for testing images and troubleshooting
+
 import UIKit
 import TesseractOCR
 import Vision
-
-enum OCRType {
-    case date
-    case assignment
-}
 
 class WorkingOCR: UIViewController, G8TesseractDelegate {
     
@@ -22,13 +19,16 @@ class WorkingOCR: UIViewController, G8TesseractDelegate {
     @IBOutlet weak var origImageView: UIImageView!
     @IBOutlet weak var boxedImageView: UIImageView!
     let type = OCRType.date
-    let image = UIImage(named: "sampleDates.jpg")?.g8_blackAndWhite()
-    var imageToAnalyis : CIImage?
+    let image = UIImage(named: "sampleAssignments.jpg")?.g8_blackAndWhite()
     
     // To Keep
+    // 2018 first
     var recognizedText = [String]()
-    var dateObjects = [Date]()
+    var dateFormats = ["MMMd", "MMMdyyyy", "MMMdyy", "dMMMyy", "dMMMyyyy",  "dMMM", "yyyyMMMd", "yyMMMd", "dMMMyyyy", "dMMMyy", "MMddyyyy"]
+    lazy var syllabus = Syllabus()
     
+    
+    // TODO: Change
     lazy var textRectangleRequest: VNDetectTextRectanglesRequest = {
         let textRequest = VNDetectTextRectanglesRequest(completionHandler: self.handleTextIdentification)
         textRequest.reportCharacterBoxes = true
@@ -42,12 +42,11 @@ class WorkingOCR: UIViewController, G8TesseractDelegate {
         super.viewDidLoad()
         origImageView.image = image
         boxedImageView.image = image
-        guard let uiImage = UIImage(named: "sampleDates.jpg")?.g8_blackAndWhite()
+        guard let uiImage = UIImage(named: "sampleAssignments.jpg")?.g8_blackAndWhite()
             else { fatalError("no image from image picker") }
         guard let ciImage = CIImage(image: uiImage)
             else { fatalError("can't create CIImage from UIImage") }
         
-        imageToAnalyis = ciImage.oriented(forExifOrientation: Int32(uiImage.imageOrientation.rawValue))
         
         // Create vision image request
         let handler = VNImageRequestHandler(ciImage: ciImage, orientation: CGImagePropertyOrientation(rawValue: UInt32(Int32(uiImage.imageOrientation.rawValue)))!)
@@ -78,75 +77,77 @@ class WorkingOCR: UIViewController, G8TesseractDelegate {
                 self.boxedImageView.addSubview(view)
                 let croppedImage = self.crop(image: (self.image)!, rectangle: box)
                 self.recognizeText(image: croppedImage!)
-//                guard let boxes = box.characterBoxes else {
-//                    continue
-//                }
+                //                guard let boxes = box.characterBoxes else {
+                //                    continue
+                //                }
                 // TODO: Character boxes
-//                for characterBox in boxes {
-//                    let view = self.CreateBoxView(withColor: UIColor.green)
-//                    // Shrinks box to boundingbox
-//                    view.frame = self.transformRect(fromRect: characterBox.boundingBox, toViewRect: self.boxedImageView)
-//                    self.boxedImageView.addSubview(view)
-//                    let croppedImage = self.crop(image: (self.image)!, rectangle: characterBox)
-//                    self.recognizeText(image: croppedImage!)
-//                }
+                //                for characterBox in boxes {
+                //                    let view = self.CreateBoxView(withColor: UIColor.green)
+                //                    // Shrinks box to boundingbox
+                //                    view.frame = self.transformRect(fromRect: characterBox.boundingBox, toViewRect: self.boxedImageView)
+                //                    self.boxedImageView.addSubview(view)
+                //                    let croppedImage = self.crop(image: (self.image)!, rectangle: characterBox)
+                //                    self.recognizeText(image: croppedImage!)
+                //                }
             }
             // TODO: Remove after testing purposes
-            for text in self.recognizedText {
-                self.textToDate(text: text)
-            }
+//            for text in self.recognizedText {
+//                print(text)
+//            }
+            self.segueToEvents()
         }
-        
     }
     
+    // TODO: Error check if no date is replied
+    // TODO: End of the year case if it goes from dec 2018 to jan 2019
     // Handles text to date object
     func textToDate(text: String) -> Date {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMMMd"
-        let trimmedString = text.replacingOccurrences(of: " ", with: "")
-        print(trimmedString)
-        if let date = dateFormatter.date(from: trimmedString) {
-            print(date)
-        } else {
-            // Invalid date
-            print("Invalid")
+        let calendar = Calendar.current
+        let currentDate = Date()
+        let date = Date()
+        
+        // Insert Test case here
+        // TODO: Add in confirmation for date type and if not then ask for date type
+        //let testText = ["April 2 18", "April 03 2018", "Apr 4", "April 5", "02/06", "02/07/2018", "02/08/2018"]
+        let removeCharacters = text.replacingOccurrences(of: "[\\/,-.]", with: "", options: .regularExpression, range: nil)
+        let removeWhitespace = removeCharacters.replacingOccurrences(of: " ", with: "")
+        
+        for format in dateFormats {
+            dateFormatter.dateFormat = format
+            if var date = dateFormatter.date(from: removeWhitespace) {
+                var year = calendar.component(.year, from: date)
+                let currentYear = calendar.component(.year, from: currentDate)
+
+                // Accounts for no year in the date.
+                if year < currentYear {
+                    year = currentYear
+                }
+                
+                let month = calendar.component(.month, from: date)
+                let day = calendar.component(.day, from: date)
+                date = getDateObject(month: month, day: day, year: year, hour: 0, min: 0)
+                print(date)
+                return date
+            }
         }
-        // for loop of dateformatters strings
-        // if let _ = dateFormatterGet.date(from: dateString)
-        // break
-        
-        //
-        
-        
-//         {
-//            //date parsing succeeded, if you need to do additional logic, replace _ with some variable name i.e date
-//            return true
-//        } else {
-        let date = getDateObject(month: 02, day: 27, year: 2018, hour: 17, min: 0)
         return date
     }
     
     func segueToEvents() {
-        print("segueToEvents")
-       // if type == .date {
-            var dateObjects = [Date]()
-            for text in self.recognizedText {
-                dateObjects.append(textToDate(text: text))
-            }
-            // Send over dateObjects
-      //  } else {
-            // Send over recognizedText
-      //  }
-//        let storyBoard: UIStoryboard = UIStoryboard(name: "Events", bundle: nil)
-//        let eventsVC = storyBoard.instantiateViewController(withIdentifier: "EventsViewController")
+        print(recognizedText)
+        // if type == .date {
+        var dateObjects = [Date]()
+        for text in self.recognizedText {
+            dateObjects.append(textToDate(text: text))
+        }
+//        let storyBoard: UIStoryboard = UIStoryboard(name: "DetailedEvent", bundle: nil)
+//        let detailedEventVC = storyBoard.instantiateInitialViewController() as! DetailedEventViewController
 //
-//        addChildViewController(eventsVC)
-//        view.addSubview(eventsVC.view)
-//        eventsVC.didMove(toParentViewController: self)
+//        // Sends over event details
+//        detailedEventVC.event = event
 //
-//        let height = view.frame.height
-//        let width  = view.frame.width
-//        eventsVC.view.frame = CGRect(x: 0, y: self.view.frame.maxY, width: width, height: height)
+//        mainNavigationController.pushViewController(detailedEventVC, animated: true)
     }
     
     // Crops the image so Tesseract can OCR per section

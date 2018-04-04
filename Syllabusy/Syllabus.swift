@@ -1,0 +1,14 @@
+//
+//  Syllabus.swift
+//  Syllabusy
+//
+//  Created by Vivian Tran on 4/3/18.
+//  Copyright © 2018 Vivian Tran. All rights reserved.
+//
+
+import UIKit
+
+struct Syllabus {
+    var dates = [Date]()
+    var assignments = [String]()
+}

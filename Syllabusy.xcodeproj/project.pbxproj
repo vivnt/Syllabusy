@@ -10,7 +10,6 @@
 		B307626D2046273B007E5CD1 /* WorkingOCR.swift in Sources */ = {isa = PBXBuildFile; fileRef = B307626C2046273B007E5CD1 /* WorkingOCR.swift */; };
 		B307626F2046274B007E5CD1 /* WorkingOCR.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B307626E2046274B007E5CD1 /* WorkingOCR.storyboard */; };
 		B31B46482042022E0064805E /* SYLBCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31B46472042022E0064805E /* SYLBCardTableViewCell.swift */; };
-		B32BE3C52041170C004474A0 /* SYLBUploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32BE3C42041170B004474A0 /* SYLBUploadViewController.swift */; };
 		B32FC8C9203E448C00F53A73 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32FC8C8203E448C00F53A73 /* ViewController.swift */; };
 		B391E3FB20191CDC004279E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B391E3FA20191CDC004279E0 /* AppDelegate.swift */; };
 		B391E40220191CDC004279E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B391E40120191CDC004279E0 /* Assets.xcassets */; };
@@ -18,7 +17,10 @@
 		B391E40D20192518004279E0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B391E40C20192517004279E0 /* GoogleService-Info.plist */; };
 		B39D828A2041125D00E9FA51 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B39D82892041125D00E9FA51 /* Main.storyboard */; };
 		B39D828C204113F900E9FA51 /* SYLBAssignmentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39D828B204113F900E9FA51 /* SYLBAssignmentsViewController.swift */; };
+		B3A129FA2073F6210064D8FF /* Syllabus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A129F92073F6210064D8FF /* Syllabus.swift */; };
+		B3A129FC2073F7A00064D8FF /* SYLBUpload.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3A129FB2073F7A00064D8FF /* SYLBUpload.storyboard */; };
 		B3A7B67F202238190021D2EA /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = B3A7B67E202238190021D2EA /* tessdata */; };
+		B3D5BEE920754D3D00BF1B7A /* SYLBUploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D5BEE820754D3D00BF1B7A /* SYLBUploadViewController.swift */; };
 		F6CC6A969F8B452E1D03DE8A /* Pods_Syllabusy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A6F4CE22F6EFDD004ED5371 /* Pods_Syllabusy.framework */; };
 /* End PBXBuildFile section */
 
@@ -27,7 +29,6 @@
 		B307626C2046273B007E5CD1 /* WorkingOCR.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkingOCR.swift; sourceTree = "<group>"; };
 		B307626E2046274B007E5CD1 /* WorkingOCR.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WorkingOCR.storyboard; sourceTree = "<group>"; };
 		B31B46472042022E0064805E /* SYLBCardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SYLBCardTableViewCell.swift; sourceTree = "<group>"; };
-		B32BE3C42041170B004474A0 /* SYLBUploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SYLBUploadViewController.swift; sourceTree = "<group>"; };
 		B32FC8C8203E448C00F53A73 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B391E3F720191CDC004279E0 /* Syllabusy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Syllabusy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B391E3FA20191CDC004279E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -37,7 +38,10 @@
 		B391E40C20192517004279E0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B39D82892041125D00E9FA51 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		B39D828B204113F900E9FA51 /* SYLBAssignmentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SYLBAssignmentsViewController.swift; sourceTree = "<group>"; };
+		B3A129F92073F6210064D8FF /* Syllabus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Syllabus.swift; sourceTree = "<group>"; };
+		B3A129FB2073F7A00064D8FF /* SYLBUpload.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SYLBUpload.storyboard; sourceTree = "<group>"; };
 		B3A7B67E202238190021D2EA /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
+		B3D5BEE820754D3D00BF1B7A /* SYLBUploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SYLBUploadViewController.swift; sourceTree = "<group>"; };
 		CAF2150A8CC27569D759C395 /* Pods-Syllabusy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Syllabusy.release.xcconfig"; path = "Pods/Target Support Files/Pods-Syllabusy/Pods-Syllabusy.release.xcconfig"; sourceTree = "<group>"; };
 		D821C27C9425FE035939EBCD /* Pods-Syllabusy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Syllabusy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Syllabusy/Pods-Syllabusy.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -101,10 +105,12 @@
 				B39D82892041125D00E9FA51 /* Main.storyboard */,
 				B39D828B204113F900E9FA51 /* SYLBAssignmentsViewController.swift */,
 				B31B46472042022E0064805E /* SYLBCardTableViewCell.swift */,
-				B32BE3C42041170B004474A0 /* SYLBUploadViewController.swift */,
 				B32FC8C8203E448C00F53A73 /* ViewController.swift */,
 				B307626E2046274B007E5CD1 /* WorkingOCR.storyboard */,
 				B307626C2046273B007E5CD1 /* WorkingOCR.swift */,
+				B3A129FB2073F7A00064D8FF /* SYLBUpload.storyboard */,
+				B3D5BEE820754D3D00BF1B7A /* SYLBUploadViewController.swift */,
+				B3A129F92073F6210064D8FF /* Syllabus.swift */,
 			);
 			path = Syllabusy;
 			sourceTree = "<group>";
@@ -172,6 +178,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B391E40520191CDC004279E0 /* LaunchScreen.storyboard in Resources */,
+				B3A129FC2073F7A00064D8FF /* SYLBUpload.storyboard in Resources */,
 				B391E40D20192518004279E0 /* GoogleService-Info.plist in Resources */,
 				B3A7B67F202238190021D2EA /* tessdata in Resources */,
 				B307626F2046274B007E5CD1 /* WorkingOCR.storyboard in Resources */,
@@ -244,11 +251,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				B307626D2046273B007E5CD1 /* WorkingOCR.swift in Sources */,
+				B3D5BEE920754D3D00BF1B7A /* SYLBUploadViewController.swift in Sources */,
 				B31B46482042022E0064805E /* SYLBCardTableViewCell.swift in Sources */,
 				B32FC8C9203E448C00F53A73 /* ViewController.swift in Sources */,
 				B391E3FB20191CDC004279E0 /* AppDelegate.swift in Sources */,
+				B3A129FA2073F6210064D8FF /* Syllabus.swift in Sources */,
 				B39D828C204113F900E9FA51 /* SYLBAssignmentsViewController.swift in Sources */,
-				B32BE3C52041170C004474A0 /* SYLBUploadViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

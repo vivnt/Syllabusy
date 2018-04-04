@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cf7-Mp-4wU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="PQf-hS-3JA">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -73,6 +73,7 @@
         <!--Upload-->
         <scene sceneID="20t-NS-12x">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vvq-ly-V2n" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="1yk-AG-U8S" customClass="SYLBUploadViewController" customModule="Syllabusy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="35L-mT-3lK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -94,9 +95,36 @@
                         <inset key="imageInsets" minX="0.0" minY="-25" maxX="0.0" maxY="0.0"/>
                     </tabBarItem>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vvq-ly-V2n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1354" y="-69"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="JEd-lP-nDa">
+            <objects>
+                <viewController id="PQf-hS-3JA" customClass="ViewController" customModule="Syllabusy" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dDG-ji-bvZ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ne8-4E-Jnj">
+                                <rect key="frame" x="305" y="597" width="50" height="50"/>
+                                <state key="normal" image="addButton"/>
+                                <connections>
+                                    <action selector="uploadButtonTapped:" destination="PQf-hS-3JA" eventType="touchUpInside" id="nxO-af-8lu"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="HCW-zP-CGI" firstAttribute="bottom" secondItem="Ne8-4E-Jnj" secondAttribute="bottom" constant="20" id="Apb-jZ-CoZ"/>
+                            <constraint firstItem="HCW-zP-CGI" firstAttribute="trailing" secondItem="Ne8-4E-Jnj" secondAttribute="trailing" constant="20" id="aR6-EI-JVu"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="HCW-zP-CGI"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="weB-ox-rhC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1287" y="609"/>
         </scene>
         <!--Settings-->
         <scene sceneID="xHB-MU-ULY">
@@ -117,6 +145,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="88s-xG-7gF">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uWy-Ol-Iba" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="cf7-Mp-4wU" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="lm8-Qf-3Am">
@@ -130,7 +159,6 @@
                         <segue destination="hJx-yB-0j0" kind="relationship" relationship="viewControllers" id="tYT-fc-QBV"/>
                     </connections>
                 </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="uWy-Ol-Iba" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-505" y="-68"/>
         </scene>
