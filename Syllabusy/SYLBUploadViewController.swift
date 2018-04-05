@@ -9,40 +9,121 @@
 import UIKit
 import TesseractOCR
 import Vision
+import CropViewController
+import AVFoundation
 
-enum OCRType {
-    case date
-    case assignment
-}
-
-class SYLBUploadViewController: UIViewController, G8TesseractDelegate {
+class SYLBUploadViewController: UIViewController, G8TesseractDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CropViewControllerDelegate {
     
     // TODO: Make private vars
     // UI elements for testing
-    var image = UIImage(named: "sampleDates.jpg")?.g8_blackAndWhite()
+    lazy var image = UIImage(named: "sampleDates.jpg")?.g8_blackAndWhite()
+    let imagePicker = UIImagePickerController()
     
+    @IBOutlet var instructionLabel: UILabel!
+    @IBOutlet var imageView: UIImageView!
     var recognizedText = [String]()
     var dateFormats = ["MMMd", "MMMdyyyy", "MMMdyy", "dMMMyy", "dMMMyyyy",  "dMMM", "yyyyMMMd", "yyMMMd", "dMMMyyyy", "dMMMyy", "MMddyyyy"]
     lazy var syllabus = Syllabus()
     var type = OCRType.date
+    var instruction = "Upload Dates"
     
     // TODO: Change
     lazy var textRectangleRequest: VNDetectTextRectanglesRequest = {
         let textRequest = VNDetectTextRectanglesRequest(completionHandler: self.handleTextIdentification)
-        textRequest.reportCharacterBoxes = true
+        textRequest.reportCharacterBoxes = false
         return textRequest
     }()
+    
+    @objc func handleCancel() {
+        dismiss(animated: true)
+    }
     
     // Currently taking sample images and setting it.
     // TODO: Move Image setting to Func
     // TODO: Grab user chosen images
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if type == .date {
+            let leftButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(self.handleCancel))
+            self.navigationItem.leftBarButtonItem = leftButton
+        }
+        
+        instructionLabel.text = instruction
+        imageView.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        imageView.image = UIImage(named: "placeHolderImage.png")
+        
+        // TODO: Remove after testing
+        imagePicker.delegate = self
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(selectImage(tapGestureRecognizer:)))
+        imageView.isUserInteractionEnabled = true
+        imageView.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    func presentCropViewController(image: UIImage) {
+        let cropViewController = CropViewController(image: image)
+        cropViewController.delegate = self
+        present(cropViewController, animated: true, completion: nil)
+    }
+
+    func cropViewController(_ cropViewController: CropViewController, didCropToImage image: UIImage, withRect cropRect: CGRect, angle: Int) {
+        imageView.image = image
+        self.image = image
+        imageView.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        dismiss(animated: true)
+        startRecognition()
+    }
+    
+    @objc func selectImage(tapGestureRecognizer: UITapGestureRecognizer) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { action in }
+        alertController.addAction(cancelAction)
+        
+        let takePhotoAction = UIAlertAction(title: "Take Photo", style: .default) { action in
+            let cameraMediaType = AVMediaType.video
+            let cameraAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: cameraMediaType)
+            
+            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) && (cameraAuthorizationStatus == AVAuthorizationStatus.authorized || cameraAuthorizationStatus == AVAuthorizationStatus.notDetermined) {
+                imagePicker.sourceType = UIImagePickerControllerSourceType.camera
+                imagePicker.allowsEditing = false
+                self.present(imagePicker, animated: true, completion: nil)
+            } else {
+                let alert  = UIAlertController(title: "Warning", message: "No camera found. Be sure to enable permissions for the camera in settings.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
+        alertController.addAction(takePhotoAction)
+        
+        let choosePhotoAction = UIAlertAction(title: "Choose Photo", style: .default) { action in
+            imagePicker.allowsEditing = false
+            self.present(imagePicker, animated: true)
+        }
+        alertController.addAction(choosePhotoAction)
+        
+        self.present(alertController, animated: true)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        if let possibleImage = info["UIImagePickerControllerOriginalImage"] as? UIImage {
+            dismiss(animated: true, completion: nil)
+            presentCropViewController(image: possibleImage)
+        } else {
+            return
+        }
+    }
+    
+    func startRecognition() {
         guard let uiImage = self.image?.g8_blackAndWhite()
             else { fatalError("no image from image picker") }
         guard let ciImage = CIImage(image: uiImage)
             else { fatalError("can't create CIImage from UIImage") }
         
+        self.imageView.image = uiImage
         // Create vision image request
         // TODO: Get image from handler instead of making a global value
         let handler = VNImageRequestHandler(ciImage: ciImage, orientation: CGImagePropertyOrientation(rawValue: UInt32(Int32(uiImage.imageOrientation.rawValue)))!)
@@ -108,27 +189,40 @@ class SYLBUploadViewController: UIViewController, G8TesseractDelegate {
         return date
     }
     
-    // TODO: Move to next button instead ?
+    // FEATURE: Move to next button instead ?
     func segue() {
         if type == .date {
             var dateObjects = [Date]()
             for text in self.recognizedText {
                 dateObjects.append(textToDate(text: text))
             }
-            print(dateObjects)
-            let assignmentsVC = UIStoryboard(name: "SYLBUpload", bundle: nil).instantiateViewController(withIdentifier: "assignmentsVC") as! SYLBUploadViewController
-            assignmentsVC.type = .assignment
+            syllabus.dates = dateObjects.sorted(by: { $0.compare($1) == .orderedAscending })
+            let uploadVC = UIStoryboard(name: "SYLBUpload", bundle: nil).instantiateViewController(withIdentifier: "uploadVC") as! SYLBUploadViewController
+            uploadVC.type = .assignment
+            uploadVC.syllabus = syllabus
+            uploadVC.instruction = "Upload Assignment"
             
             //TODO: remove after testing
-            assignmentsVC.image = UIImage(named: "sampleAssignments.jpg")?.g8_blackAndWhite()
+            //uploadVC.image = UIImage(named: "sampleAssignments.jpg")?.g8_blackAndWhite()
             
-            self.navigationController?.pushViewController(assignmentsVC, animated: true)
+            self.navigationController?.pushViewController(uploadVC, animated: true)
         } else {
             //TODO: remove after testing
-            print(recognizedText)
+            syllabus.assignments = recognizedText
             
-            let tableViewVC = UIStoryboard(name: "SYLBUpload", bundle: nil).instantiateViewController(withIdentifier: "tableViewVC") as! SYLBUploadViewController
-            self.navigationController?.pushViewController(tableViewVC, animated: true)
+            // TODO: Change to not equal
+            if syllabus.assignments.count != syllabus.assignments.count {
+                let reviewVC = UIStoryboard(name: "SYLBUpload", bundle: nil).instantiateViewController(withIdentifier: "reviewVC") as! SYLBReviewViewController
+                reviewVC.syllabus = syllabus
+                
+                self.navigationController?.pushViewController(reviewVC, animated: true)
+            } else {
+                print(syllabus.assignments)
+                print(syllabus.dates)
+                let tableViewVC = UIStoryboard(name: "SYLBUpload", bundle: nil).instantiateViewController(withIdentifier: "tableViewVC") as! SYLBTableViewViewController
+                tableViewVC.syllabus = syllabus
+                self.navigationController?.pushViewController(tableViewVC, animated: true)
+            }
         }
     }
     
@@ -197,13 +291,13 @@ class SYLBUploadViewController: UIViewController, G8TesseractDelegate {
     }
     
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

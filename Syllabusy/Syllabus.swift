@@ -8,6 +8,11 @@
 
 import UIKit
 
+enum OCRType {
+    case date
+    case assignment
+}
+
 struct Syllabus {
     var dates = [Date]()
     var assignments = [String]()

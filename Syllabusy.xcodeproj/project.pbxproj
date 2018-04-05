@@ -11,6 +11,8 @@
 		B307626F2046274B007E5CD1 /* WorkingOCR.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B307626E2046274B007E5CD1 /* WorkingOCR.storyboard */; };
 		B31B46482042022E0064805E /* SYLBCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31B46472042022E0064805E /* SYLBCardTableViewCell.swift */; };
 		B32FC8C9203E448C00F53A73 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32FC8C8203E448C00F53A73 /* ViewController.swift */; };
+		B3602CD32075854400900FB2 /* SYLBTableViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3602CD22075854400900FB2 /* SYLBTableViewViewController.swift */; };
+		B3602CD720758E9300900FB2 /* SYLBReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3602CD620758E9300900FB2 /* SYLBReviewViewController.swift */; };
 		B391E3FB20191CDC004279E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B391E3FA20191CDC004279E0 /* AppDelegate.swift */; };
 		B391E40220191CDC004279E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B391E40120191CDC004279E0 /* Assets.xcassets */; };
 		B391E40520191CDC004279E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B391E40320191CDC004279E0 /* LaunchScreen.storyboard */; };
@@ -30,6 +32,8 @@
 		B307626E2046274B007E5CD1 /* WorkingOCR.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WorkingOCR.storyboard; sourceTree = "<group>"; };
 		B31B46472042022E0064805E /* SYLBCardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SYLBCardTableViewCell.swift; sourceTree = "<group>"; };
 		B32FC8C8203E448C00F53A73 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B3602CD22075854400900FB2 /* SYLBTableViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SYLBTableViewViewController.swift; sourceTree = "<group>"; };
+		B3602CD620758E9300900FB2 /* SYLBReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SYLBReviewViewController.swift; sourceTree = "<group>"; };
 		B391E3F720191CDC004279E0 /* Syllabusy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Syllabusy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B391E3FA20191CDC004279E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B391E40120191CDC004279E0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -110,6 +114,8 @@
 				B307626C2046273B007E5CD1 /* WorkingOCR.swift */,
 				B3A129FB2073F7A00064D8FF /* SYLBUpload.storyboard */,
 				B3D5BEE820754D3D00BF1B7A /* SYLBUploadViewController.swift */,
+				B3602CD620758E9300900FB2 /* SYLBReviewViewController.swift */,
+				B3602CD22075854400900FB2 /* SYLBTableViewViewController.swift */,
 				B3A129F92073F6210064D8FF /* Syllabus.swift */,
 			);
 			path = Syllabusy;
@@ -145,7 +151,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Vivian Tran";
 				TargetAttributes = {
 					B391E3F620191CDC004279E0 = {
@@ -250,9 +256,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3602CD32075854400900FB2 /* SYLBTableViewViewController.swift in Sources */,
 				B307626D2046273B007E5CD1 /* WorkingOCR.swift in Sources */,
 				B3D5BEE920754D3D00BF1B7A /* SYLBUploadViewController.swift in Sources */,
 				B31B46482042022E0064805E /* SYLBCardTableViewCell.swift in Sources */,
+				B3602CD720758E9300900FB2 /* SYLBReviewViewController.swift in Sources */,
 				B32FC8C9203E448C00F53A73 /* ViewController.swift in Sources */,
 				B391E3FB20191CDC004279E0 /* AppDelegate.swift in Sources */,
 				B3A129FA2073F6210064D8FF /* Syllabus.swift in Sources */,
@@ -288,6 +296,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -295,6 +304,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -306,6 +316,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -345,6 +356,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -352,6 +364,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -363,6 +376,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;

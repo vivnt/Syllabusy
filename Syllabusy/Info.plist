@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSCameraUsageDescription</key>
+	<string>To take pictures of your syllabus</string>
 	<key>NSCalendarsUsageDescription</key>
 	<string>We need access to your calendar to write events</string>
 	<key>CFBundleDevelopmentRegion</key>
