@@ -109,12 +109,40 @@ class SYLBUploadViewController: UIViewController, G8TesseractDelegate, UIImagePi
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
-        if let possibleImage = info["UIImagePickerControllerOriginalImage"] as? UIImage {
-            dismiss(animated: true, completion: nil)
-            presentCropViewController(image: possibleImage)
-        } else {
-            return
+        dismiss(animated: true)
+        guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else {
+            fatalError("Couldn't load image")
         }
+        self.imageView.image = image
+        self.detectText(image: image)
+    }
+    
+    func detectText(image: UIImage) {
+        let ciImage = CIImage(image: image)
+        let handler = VNImageRequestHandler(ciImage: ciImage!)
+        let request: VNDetectTextRectanglesRequest =
+            VNDetectTextRectanglesRequest(completionHandler: { [unowned self] (request, error) in
+                if (error != nil) {
+                    print("Got Error In Run Text Dectect Request :(")
+                } else {
+                    guard let results = request.results as? Array<VNTextObservation> else {
+                        fatalError("Unexpected result type from VNDetectTextRectanglesRequest")
+                    }
+                    for textObservation in results {
+                            let croppedImage = self.crop(image: image, rectangle: textObservation)
+                            if let croppedImage = croppedImage {
+                                self.recognizeText(image: croppedImage)
+                        }
+                    }
+                }
+            })
+        request.reportCharacterBoxes = true
+        do {
+            try handler.perform([request])
+        } catch {
+            print(error)
+        }
+        segue()
     }
     
     func startRecognition() {
@@ -147,8 +175,10 @@ class SYLBUploadViewController: UIViewController, G8TesseractDelegate, UIImagePi
         DispatchQueue.main.async {
             // Uses VisionML to pinpoint sections
             for box in observations {
-                let croppedImage = self.crop(image: (self.image)!, rectangle: box)
-                self.recognizeText(image: croppedImage!)
+                
+                //let croppedImage = self.crop(image: (self.image)!, rectangle: box)
+//                self.recognizeText(image: croppedImage!)
+//                self.imageView.image = croppedImage
             }
             self.segue()
         }
@@ -255,6 +285,7 @@ class SYLBUploadViewController: UIViewController, G8TesseractDelegate, UIImagePi
         
         let text = String(tesseract.recognizedText.filter{ !"\n".contains($0) })
         recognizedText.append(text)
+        print(text)
     }
     
     // Gets the date object from inputted text
