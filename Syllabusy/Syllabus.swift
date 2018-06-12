@@ -8,6 +8,11 @@
 
 import UIKit
 
+enum type {
+    case date
+    case assignment
+}
+
 enum OCRType {
     case date
     case assignment

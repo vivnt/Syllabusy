@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="PQf-hS-3JA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="PQf-hS-3JA">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -10,94 +10,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Assignments-->
-        <scene sceneID="Ys7-iJ-fMb">
-            <objects>
-                <tableViewController id="boF-b8-BBO" customClass="SYLBAssignmentsViewController" customModule="Syllabusy" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="5BX-PH-DlR">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="card" focusStyle="custom" rowHeight="80" id="Nai-lY-rB6" customClass="SYLBCardTableViewCell" customModule="Syllabusy" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="80"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Nai-lY-rB6" id="Buo-G1-8Xr">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EZe-2I-nRY">
-                                            <rect key="frame" x="25" y="0.0" width="325" height="80"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bis-aj-c22">
-                                                    <rect key="frame" x="25" y="8" width="42" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.88134765625" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="325" id="GgR-un-4eC"/>
-                                                <constraint firstAttribute="height" constant="80" id="ln3-Ue-UDd"/>
-                                            </constraints>
-                                        </view>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="EZe-2I-nRY" firstAttribute="centerX" secondItem="Buo-G1-8Xr" secondAttribute="centerX" id="ABw-HP-gbM"/>
-                                        <constraint firstItem="bis-aj-c22" firstAttribute="leading" secondItem="Buo-G1-8Xr" secondAttribute="leading" constant="50" id="ASj-iS-RMN"/>
-                                        <constraint firstItem="bis-aj-c22" firstAttribute="top" secondItem="Buo-G1-8Xr" secondAttribute="top" constant="7.5" id="dlo-it-b29"/>
-                                        <constraint firstItem="EZe-2I-nRY" firstAttribute="centerY" secondItem="Buo-G1-8Xr" secondAttribute="centerY" id="ph2-Pi-NIC"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="cardView" destination="Buo-G1-8Xr" id="byZ-sE-8rK"/>
-                                    <outlet property="classLabel" destination="bis-aj-c22" id="jsQ-yc-vkz"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="boF-b8-BBO" id="Euq-1Z-KJz"/>
-                            <outlet property="delegate" destination="boF-b8-BBO" id="JCi-Py-7wi"/>
-                        </connections>
-                    </tableView>
-                    <tabBarItem key="tabBarItem" title="Assignments" id="Bvg-2y-pio"/>
-                    <connections>
-                        <outlet property="calendarTableView" destination="5BX-PH-DlR" id="XW9-Hr-c9P"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="o8h-hD-4QT" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="568.79999999999995" y="-274.81259370314842"/>
-        </scene>
-        <!--Upload-->
-        <scene sceneID="20t-NS-12x">
-            <objects>
-                <viewController id="1yk-AG-U8S" customClass="SYLBUploadViewController" customModule="Syllabusy" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="35L-mT-3lK">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dje-Np-LA7">
-                                <rect key="frame" x="104" y="277" width="166" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Add Event named &quot;Test&quot;"/>
-                                <connections>
-                                    <action selector="addButton:" destination="1yk-AG-U8S" eventType="touchUpInside" id="ILB-mf-bjp"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="Jk3-cj-rWY"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Upload" image="addButton" id="Elg-9G-ZAN">
-                        <inset key="imageInsets" minX="0.0" minY="-25" maxX="0.0" maxY="0.0"/>
-                    </tabBarItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vvq-ly-V2n" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1354" y="-69"/>
-        </scene>
         <!--View Controller-->
         <scene sceneID="JEd-lP-nDa">
             <objects>
@@ -125,42 +37,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="weB-ox-rhC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1287" y="609"/>
-        </scene>
-        <!--Settings-->
-        <scene sceneID="xHB-MU-ULY">
-            <objects>
-                <viewController id="hJx-yB-0j0" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="WDC-vT-gOk">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="xEs-Nn-fth"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Settings" id="DhN-id-mEo"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2Ax-yf-3tO" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="514" y="460"/>
-        </scene>
-        <!--Tab Bar Controller-->
-        <scene sceneID="88s-xG-7gF">
-            <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="cf7-Mp-4wU" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="lm8-Qf-3Am">
-                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </tabBar>
-                    <connections>
-                        <segue destination="boF-b8-BBO" kind="relationship" relationship="viewControllers" id="mbH-8p-xgy"/>
-                        <segue destination="1yk-AG-U8S" kind="relationship" relationship="viewControllers" id="YNm-k6-HbD"/>
-                        <segue destination="hJx-yB-0j0" kind="relationship" relationship="viewControllers" id="tYT-fc-QBV"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="uWy-Ol-Iba" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-505" y="-68"/>
         </scene>
     </scenes>
     <resources>
