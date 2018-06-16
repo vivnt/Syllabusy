@@ -33,5 +33,4 @@ class SYLBReviewViewController: UIViewController, UITableViewDelegate, UITableVi
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         return cell
     }
-    
 }
