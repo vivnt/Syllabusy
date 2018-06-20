@@ -50,7 +50,6 @@ class SYLBTableViewViewController: UIViewController, UITableViewDelegate, UITabl
         print("sent to cal")
         
         let eventStore = EKEventStore();
-        var calendar: EKCalendar!
         
         for index in syllabus.dates.indices {
             let event:EKEvent = EKEvent(eventStore: eventStore)
