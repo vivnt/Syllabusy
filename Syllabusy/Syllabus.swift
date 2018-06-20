@@ -21,5 +21,5 @@ enum OCRType {
 struct Syllabus {
     var dates = [Date]()
     var assignments = [String]()
-    var calendar = ""
+    var selectedCalendar = ""
 }

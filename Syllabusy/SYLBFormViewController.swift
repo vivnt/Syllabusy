@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import EventKit
 
 class SYLBFormViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -17,17 +18,33 @@ class SYLBFormViewController: UIViewController, UITableViewDelegate, UITableView
     let dateFormatter = DateFormatter()
     var dataArray: [[String: Any]] = []
     var pickerIndex = 100
-    var calendar = ""
-    lazy var syllabus = Syllabus()
+    var syllabus = Syllabus()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let rightButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(self.doneAction))
+        self.navigationItem.rightBarButtonItem = rightButton
         
         self.dataArray = [
             [titleKey : "All-Day"]
         ]
         
         dateFormatter.dateFormat = "h:mm a"
+        
+        let eventStore = EKEventStore();
+        syllabus.selectedCalendar = (eventStore.defaultCalendarForNewEvents?.title)!
+    }
+    
+    @objc func doneAction() {
+        let uploadVC = UIStoryboard(name: "SYLBUpload", bundle: nil).instantiateViewController(withIdentifier: "uploadVC") as! SYLBUploadViewController
+        uploadVC.syllabus = syllabus
+        self.navigationController?.pushViewController(uploadVC, animated: true)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        tableView.reloadData()
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -85,6 +102,7 @@ class SYLBFormViewController: UIViewController, UITableViewDelegate, UITableView
         else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "calendarCell", for: indexPath)
             cell.textLabel?.text = "Calendar"
+            cell.detailTextLabel?.text = syllabus.selectedCalendar
             return cell
         }
     }
@@ -92,17 +110,22 @@ class SYLBFormViewController: UIViewController, UITableViewDelegate, UITableView
     func updateDatePicker() {
         if pickerIndex < dataArray.count-1 {
             let associatedDatePickerCell = self.tableView.cellForRow(at: IndexPath(item: pickerIndex, section: 0))
-            print("Test")
             guard let targetedDatePicker = associatedDatePickerCell?.viewWithTag(99) as? UIDatePicker else {return}
             targetedDatePicker.setDate(dataArray[pickerIndex-1]["date"] as! Date, animated: false)
         }
     }
     
+    func setCalendar(calendarName: String) {
+        syllabus.selectedCalendar = calendarName
+        print(syllabus)
+    }
+    
     // TODO: Call back from unwind needs to send data over
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if (indexPath.section == 1) {
-            print("Switching to CalVC")
             let calendarForm = UIStoryboard(name: "SYLBForm", bundle: nil).instantiateViewController(withIdentifier: "calendarFormVC") as! SYLBCalendarFormViewController
+            calendarForm.syllabus = syllabus
+            calendarForm.mainViewController = self
             self.navigationController?.pushViewController(calendarForm, animated: true)
         } else {
             tableView.beginUpdates()
@@ -152,7 +175,6 @@ class SYLBFormViewController: UIViewController, UITableViewDelegate, UITableView
         cell?.detailTextLabel?.text = self.dateFormatter.string(for: sender.date)
         
         self.dataArray[cellIndex][dateKey] = sender.date
-        print(sender.date)
     }
     
     // TODO: Remove rows with date picker
@@ -171,7 +193,6 @@ class SYLBFormViewController: UIViewController, UITableViewDelegate, UITableView
             allDay = false
             self.tableView.insertRows(at: [IndexPath(row: 1, section: 0)], with: .fade)
             self.tableView.insertRows(at: [IndexPath(row: 2, section: 0)], with: .fade)
-            print(Date())
             self.dataArray = [
                 [titleKey : "All-Day"],
                 [titleKey : "Start Date",

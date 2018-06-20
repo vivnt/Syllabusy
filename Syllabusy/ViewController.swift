@@ -9,12 +9,37 @@
 import UIKit
 import EventKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet var tableView: UITableView!
+    @IBOutlet var uploadButton: UIButton!
+    var syllabus = Syllabus()
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.title = "Syllabusy"
+        
+        view.bringSubview(toFront: uploadButton)
+    }
     let eventStore = EKEventStore()
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "eventCell", for: indexPath)
+        cell.textLabel?.text = "Event"
+        return cell
+    }
+    
     @IBAction func uploadButtonTapped(_ sender: UIButton) {
-        let storyboard = UIStoryboard(name: "SYLBUpload", bundle: nil)
+        let storyboard = UIStoryboard(name: "SYLBForm", bundle: nil)
         let navVC = storyboard.instantiateViewController(withIdentifier: "navController")
         
         self.present(navVC, animated: true, completion: nil)

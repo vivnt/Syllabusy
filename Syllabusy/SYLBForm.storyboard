@@ -139,7 +139,7 @@
         <!--Navigation Controller-->
         <scene sceneID="LGo-SP-4ar">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="irO-Sq-b2b" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="navController" automaticallyAdjustsScrollViewInsets="NO" id="irO-Sq-b2b" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="OlD-be-LMA">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>

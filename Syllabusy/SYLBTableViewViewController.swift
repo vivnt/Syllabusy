@@ -47,8 +47,6 @@ class SYLBTableViewViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     @objc func sendToCal() {
-        print("sent to cal")
-        
         let eventStore = EKEventStore();
         
         for index in syllabus.dates.indices {
@@ -65,6 +63,7 @@ class SYLBTableViewViewController: UIViewController, UITableViewDelegate, UITabl
                 print("failed to save event with error : \(error)")
             }
         }
+        
         // Closes VC
         dismiss(animated: true)
     }

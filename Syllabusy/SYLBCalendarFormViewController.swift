@@ -12,11 +12,13 @@ import EventKit
 class SYLBCalendarFormViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet var tableView: UITableView!
+    var mainViewController: SYLBFormViewController?
     var calendars: [EKCalendar]?
-    var defaultCalendar = ""
+    var syllabus = Syllabus()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         let eventStore = EKEventStore()
         self.calendars = eventStore.calendars(for: .event).sorted() { (cal1, cal2) -> Bool in
             if (cal1.title == "") {
@@ -24,8 +26,14 @@ class SYLBCalendarFormViewController: UIViewController, UITableViewDelegate, UIT
             }
             return cal1.title < cal2.title
         }
+    }
+    
+    override func viewWillDisappear(_ animated : Bool) {
+        super.viewWillDisappear(animated)
         
-        defaultCalendar = (eventStore.defaultCalendarForNewEvents?.title)!
+        if self.isMovingFromParentViewController {
+            mainViewController?.setCalendar(calendarName: syllabus.selectedCalendar)
+        }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -52,7 +60,7 @@ class SYLBCalendarFormViewController: UIViewController, UITableViewDelegate, UIT
         let calendarName = calendars![(indexPath as NSIndexPath).row].title
         cell.textLabel?.text = calendarName
         
-        if (calendarName == defaultCalendar) {
+        if (calendarName == syllabus.selectedCalendar) {
             tableView.selectRow(at: indexPath, animated: true, scrollPosition: UITableViewScrollPosition.none)
         }
         
@@ -64,15 +72,9 @@ class SYLBCalendarFormViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("selected: " + (tableView.cellForRow(at: indexPath)?.textLabel?.text)!)
         if let cell = tableView.cellForRow(at: indexPath) {
             cell.accessoryType = .checkmark
-            
+            syllabus.selectedCalendar = (tableView.cellForRow(at: indexPath)?.textLabel?.text)!
         }
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
-    {
-        return 44
     }
 }
