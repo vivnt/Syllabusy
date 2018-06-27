@@ -77,7 +77,7 @@ class SYLBAssignmentsViewController: UIViewController, UITableViewDataSource, UI
             let calendarName = calendars[(indexPath as NSIndexPath).row].title
             cell.classLabel.text = calendarName
         } else {
-            cell.classLabel?.text = "Unknown Calendar Name"
+            cell.classLabel?.text = "Untitled Calendar"
         }
         return cell
     }

@@ -32,7 +32,8 @@ class SYLBCalendarFormViewController: UIViewController, UITableViewDelegate, UIT
         super.viewWillDisappear(animated)
         
         if self.isMovingFromParentViewController {
-            mainViewController?.setCalendar(calendarName: syllabus.selectedCalendar)
+            saveCalendar()
+            mainViewController?.setCalendar(calendarName: syllabus.selectedCalendarName, calendar: syllabus.selectedCalendar)
         }
     }
     
@@ -60,7 +61,7 @@ class SYLBCalendarFormViewController: UIViewController, UITableViewDelegate, UIT
         let calendarName = calendars![(indexPath as NSIndexPath).row].title
         cell.textLabel?.text = calendarName
         
-        if (calendarName == syllabus.selectedCalendar) {
+        if (calendarName == syllabus.selectedCalendarName) {
             tableView.selectRow(at: indexPath, animated: true, scrollPosition: UITableViewScrollPosition.none)
         }
         
@@ -74,7 +75,16 @@ class SYLBCalendarFormViewController: UIViewController, UITableViewDelegate, UIT
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) {
             cell.accessoryType = .checkmark
-            syllabus.selectedCalendar = (tableView.cellForRow(at: indexPath)?.textLabel?.text)!
+            syllabus.selectedCalendarName = (tableView.cellForRow(at: indexPath)?.textLabel?.text)!
+        }
+    }
+    
+    func saveCalendar() {
+        for calendar in self.calendars! {
+            if calendar.title == syllabus.selectedCalendarName {
+                syllabus.selectedCalendar = calendar
+                return
+            }
         }
     }
 }

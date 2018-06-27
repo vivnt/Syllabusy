@@ -11,7 +11,6 @@ import UIKit
 class SYLBReviewViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     lazy var syllabus = Syllabus()
-    var type = OCRType.date
     
     override func viewDidLoad() {
         super.viewDidLoad()

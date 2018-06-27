@@ -53,9 +53,16 @@ class SYLBTableViewViewController: UIViewController, UITableViewDelegate, UITabl
             let event:EKEvent = EKEvent(eventStore: eventStore)
             
             event.title = syllabus.assignments[index]
-            event.startDate = syllabus.dates[index]
-            event.endDate = syllabus.dates[index]
-            event.calendar = eventStore.defaultCalendarForNewEvents
+            if (syllabus.allDay == false) {
+                event.startDate = getDatesWithTime(syllabusDate: syllabus.dates[index], time: syllabus.startTime)
+                event.endDate = getDatesWithTime(syllabusDate: syllabus.dates[index], time: syllabus.endTime)
+            } else {
+                event.startDate = syllabus.dates[index]
+                event.endDate = syllabus.dates[index]
+                event.isAllDay = true
+            }
+            
+            event.calendar = syllabus.selectedCalendar
             
             do {
                 try eventStore.save(event, span: .thisEvent)
@@ -66,5 +73,18 @@ class SYLBTableViewViewController: UIViewController, UITableViewDelegate, UITabl
         
         // Closes VC
         dismiss(animated: true)
+    }
+    
+    func getDatesWithTime(syllabusDate: Date, time: NSDate) -> Date {
+        let calendar = Calendar.current
+        var dateComponents = DateComponents()
+        dateComponents.year = calendar.component(.year, from: syllabusDate as Date)
+        dateComponents.month = calendar.component(.month, from: syllabusDate  as Date)
+        dateComponents.day = calendar.component(.day, from: syllabusDate  as Date)
+        dateComponents.hour = calendar.component(.hour, from: time  as Date)
+        dateComponents.minute = calendar.component(.minute, from: time  as Date)
+        
+        let date = calendar.date(from: dateComponents)
+        return date!
     }
 }

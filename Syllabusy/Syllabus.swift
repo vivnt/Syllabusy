@@ -7,13 +7,9 @@
 //
 
 import UIKit
+import EventKit
 
 enum type {
-    case date
-    case assignment
-}
-
-enum OCRType {
     case date
     case assignment
 }
@@ -21,5 +17,18 @@ enum OCRType {
 struct Syllabus {
     var dates = [Date]()
     var assignments = [String]()
-    var selectedCalendar = ""
+    var selectedCalendarName = ""
+    var selectedCalendar: EKCalendar
+    var allDay = true
+    var startTime = NSDate()
+    var endTime = NSDate()
+    
+    init() {
+        let eventStore = EKEventStore();
+        print(eventStore.defaultCalendarForNewEvents)
+        self.selectedCalendar = eventStore.defaultCalendarForNewEvents!
+        self.selectedCalendarName = self.selectedCalendar.title
+    }
 }
+
+

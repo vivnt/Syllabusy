@@ -24,7 +24,6 @@ class SYLBUploadViewController: UIViewController, G8TesseractDelegate, UIImagePi
     var recognizedText = [String]()
     var dateFormats = ["MM dd", "MMM d", "MMM d yyyy", "MMM d yy", "d MMM yy", "d MMM yyyy", "d MMM", "yyyy MMM d", "yy MMM d", "d MMM yyyy", "d MMM yy", "MM dd yyyy"]
     lazy var syllabus = Syllabus()
-    var type = OCRType.date
     var instruction = "Upload Dates"
     
     // TODO: Change
@@ -44,10 +43,10 @@ class SYLBUploadViewController: UIViewController, G8TesseractDelegate, UIImagePi
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if type == .date {
-            let leftButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(self.handleCancel))
-            self.navigationItem.leftBarButtonItem = leftButton
-        }
+        navigationController?.navigationBar.barTintColor = UIColor.white
+        
+        let leftButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(self.handleCancel))
+        self.navigationItem.leftBarButtonItem = leftButton
         
         instructionLabel.text = instruction
         imageView.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
@@ -66,7 +65,7 @@ class SYLBUploadViewController: UIViewController, G8TesseractDelegate, UIImagePi
         cropViewController.delegate = self
         present(cropViewController, animated: true, completion: nil)
     }
-
+    
     func cropViewController(_ cropViewController: CropViewController, didCropToImage image: UIImage, withRect cropRect: CGRect, angle: Int) {
         imageView.image = image
         self.image = image
@@ -128,9 +127,9 @@ class SYLBUploadViewController: UIViewController, G8TesseractDelegate, UIImagePi
                         fatalError("Unexpected result type from VNDetectTextRectanglesRequest")
                     }
                     for textObservation in results {
-                            let croppedImage = self.crop(image: image, rectangle: textObservation)
-                            if let croppedImage = croppedImage {
-                                self.recognizeText(image: croppedImage)
+                        let croppedImage = self.crop(image: image, rectangle: textObservation)
+                        if let croppedImage = croppedImage {
+                            self.recognizeText(image: croppedImage)
                         }
                     }
                 }
@@ -170,7 +169,7 @@ class SYLBUploadViewController: UIViewController, G8TesseractDelegate, UIImagePi
         guard observations.first != nil else {
             return
         }
-            self.segue()
+        self.segue()
     }
     
     // TODO: Error check if no date is replied
@@ -187,7 +186,7 @@ class SYLBUploadViewController: UIViewController, G8TesseractDelegate, UIImagePi
         //let testText = ["April 2 18", "April 03 2018", "Apr 4", "April 5", "02/06", "02/07/2018", "02/08/2018"]
         let removeCharacters = text.replacingOccurrences(of: "[\\/,-.]", with: " ", options: .regularExpression, range: nil)
         //let removeWhitespace = removeCharacters.replacingOccurrences(of: " ", with: "")
-
+        
         for format in dateFormats {
             dateFormatter.dateFormat = format
             if var date = dateFormatter.date(from: removeCharacters) {
@@ -215,7 +214,7 @@ class SYLBUploadViewController: UIViewController, G8TesseractDelegate, UIImagePi
     // TODO: Need to add in multiple line assignments
     func segue() {
         // Filters which are dates and which aren't
-        var lastInput = type
+        var wasDateLast = false
         
         // Checks if first date has been added yet.
         var firstDate = false
@@ -223,23 +222,20 @@ class SYLBUploadViewController: UIViewController, G8TesseractDelegate, UIImagePi
         for text in self.recognizedText {
             if let date = textToDate(text: text) {
                 syllabus.dates.append(date)
-                lastInput = .date
+                wasDateLast = true
                 firstDate = true
             }
             else if (firstDate == true) {
-                if (lastInput == .date) {
+                if (wasDateLast == true) {
                     syllabus.assignments.append(text)
                 } else {
                     let index = syllabus.assignments.count - 1
                     syllabus.assignments[index] = syllabus.assignments[index] + " " + text
                 }
-                lastInput = .assignment
+                wasDateLast = false
             }
         }
         
-        print(syllabus.dates)
-        print(syllabus.assignments)
-
         // To make sure dates are in order
         syllabus.dates = syllabus.dates.sorted(by: { $0.compare($1) == .orderedAscending })
         
@@ -250,7 +246,7 @@ class SYLBUploadViewController: UIViewController, G8TesseractDelegate, UIImagePi
             // When it has the wrong number of assignments or dates
             let reviewVC = UIStoryboard(name: "SYLBUpload", bundle: nil).instantiateViewController(withIdentifier: "reviewVC") as! SYLBReviewViewController
             reviewVC.syllabus = syllabus
-
+            
             self.navigationController?.pushViewController(reviewVC, animated: true)
         } else {
             // When it is the correct number of assignments to dates
@@ -292,7 +288,7 @@ class SYLBUploadViewController: UIViewController, G8TesseractDelegate, UIImagePi
     }
     
     // Gets the date object from inputted text
-    // Handle no hour and min
+    // TODO: Handle no hour and min
     func getDateObject(month: Int, day: Int, year: Int, hour: Int = 0, min: Int = 0) -> Date {
         var dateComponents = DateComponents()
         dateComponents.year = year

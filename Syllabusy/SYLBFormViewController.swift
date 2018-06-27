@@ -23,7 +23,7 @@ class SYLBFormViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let rightButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(self.doneAction))
+        let rightButton = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(self.nextAction))
         self.navigationItem.rightBarButtonItem = rightButton
         
         self.dataArray = [
@@ -31,14 +31,16 @@ class SYLBFormViewController: UIViewController, UITableViewDelegate, UITableView
         ]
         
         dateFormatter.dateFormat = "h:mm a"
-        
-        let eventStore = EKEventStore();
-        syllabus.selectedCalendar = (eventStore.defaultCalendarForNewEvents?.title)!
     }
     
-    @objc func doneAction() {
+    @objc func nextAction() {
         let uploadVC = UIStoryboard(name: "SYLBUpload", bundle: nil).instantiateViewController(withIdentifier: "uploadVC") as! SYLBUploadViewController
         uploadVC.syllabus = syllabus
+        if (allDay == false) {
+            syllabus.allDay = allDay
+            syllabus.startTime = dataArray[1]["date"] as! NSDate
+            syllabus.endTime = dataArray[2]["date"] as! NSDate
+        }
         self.navigationController?.pushViewController(uploadVC, animated: true)
     }
     
@@ -57,10 +59,6 @@ class SYLBFormViewController: UIViewController, UITableViewDelegate, UITableView
         } else {
             return 1
         }
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 30.0
     }
     
     // TODO: Change to TitleKey Switch statements
@@ -102,7 +100,7 @@ class SYLBFormViewController: UIViewController, UITableViewDelegate, UITableView
         else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "calendarCell", for: indexPath)
             cell.textLabel?.text = "Calendar"
-            cell.detailTextLabel?.text = syllabus.selectedCalendar
+            cell.detailTextLabel?.text = syllabus.selectedCalendarName
             return cell
         }
     }
@@ -115,9 +113,9 @@ class SYLBFormViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    func setCalendar(calendarName: String) {
-        syllabus.selectedCalendar = calendarName
-        print(syllabus)
+    func setCalendar(calendarName: String, calendar: EKCalendar) {
+        syllabus.selectedCalendarName = calendarName
+        syllabus.selectedCalendar = calendar
     }
     
     // TODO: Call back from unwind needs to send data over
@@ -190,6 +188,7 @@ class SYLBFormViewController: UIViewController, UITableViewDelegate, UITableView
             ]
             self.pickerIndex = 100
         } else {
+            syllabus.allDay = false
             allDay = false
             self.tableView.insertRows(at: [IndexPath(row: 1, section: 0)], with: .fade)
             self.tableView.insertRows(at: [IndexPath(row: 2, section: 0)], with: .fade)

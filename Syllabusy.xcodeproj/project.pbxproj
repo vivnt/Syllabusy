@@ -10,6 +10,7 @@
 		B30C1B8D20D0582A00F3CF55 /* SYLBForm.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B30C1B8C20D0582A00F3CF55 /* SYLBForm.storyboard */; };
 		B31B46482042022E0064805E /* SYLBCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31B46472042022E0064805E /* SYLBCardTableViewCell.swift */; };
 		B32FC8C9203E448C00F53A73 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32FC8C8203E448C00F53A73 /* ViewController.swift */; };
+		B351974620E2AD940053E7FB /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B351974520E2AD940053E7FB /* EventTableViewCell.swift */; };
 		B3602CD32075854400900FB2 /* SYLBTableViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3602CD22075854400900FB2 /* SYLBTableViewViewController.swift */; };
 		B3602CD720758E9300900FB2 /* SYLBReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3602CD620758E9300900FB2 /* SYLBReviewViewController.swift */; };
 		B387182420D9C890008CD958 /* SYLBCalendarFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B387182320D9C890008CD958 /* SYLBCalendarFormViewController.swift */; };
@@ -31,6 +32,7 @@
 		B30C1B8C20D0582A00F3CF55 /* SYLBForm.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SYLBForm.storyboard; sourceTree = "<group>"; };
 		B31B46472042022E0064805E /* SYLBCardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SYLBCardTableViewCell.swift; sourceTree = "<group>"; };
 		B32FC8C8203E448C00F53A73 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B351974520E2AD940053E7FB /* EventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 		B3602CD22075854400900FB2 /* SYLBTableViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SYLBTableViewViewController.swift; sourceTree = "<group>"; };
 		B3602CD620758E9300900FB2 /* SYLBReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SYLBReviewViewController.swift; sourceTree = "<group>"; };
 		B387182320D9C890008CD958 /* SYLBCalendarFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SYLBCalendarFormViewController.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 				B391E40620191CDC004279E0 /* Info.plist */,
 				B391E40320191CDC004279E0 /* LaunchScreen.storyboard */,
 				B39D82892041125D00E9FA51 /* Main.storyboard */,
+				B351974520E2AD940053E7FB /* EventTableViewCell.swift */,
 				B39D828B204113F900E9FA51 /* SYLBAssignmentsViewController.swift */,
 				B31B46472042022E0064805E /* SYLBCardTableViewCell.swift */,
 				B30C1B8C20D0582A00F3CF55 /* SYLBForm.storyboard */,
@@ -256,6 +259,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3602CD32075854400900FB2 /* SYLBTableViewViewController.swift in Sources */,
+				B351974620E2AD940053E7FB /* EventTableViewCell.swift in Sources */,
 				B3D5BEE920754D3D00BF1B7A /* SYLBUploadViewController.swift in Sources */,
 				B31B46482042022E0064805E /* SYLBCardTableViewCell.swift in Sources */,
 				B3602CD720758E9300900FB2 /* SYLBReviewViewController.swift in Sources */,
