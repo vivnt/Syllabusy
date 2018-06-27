@@ -32,7 +32,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         view.bringSubview(toFront: uploadButton)
         
         navigationController?.navigationBar.barTintColor = UIColor.white
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.font: UIFont(name: "Helvetica", size: 25)!, NSAttributedStringKey.foregroundColor: UIColor(red: 93/255, green: 93/255, blue: 93/255, alpha: 1)]
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.font: UIFont(name: "Helvetica", size: 25)!, NSAttributedStringKey.foregroundColor: UIColor(red: 188/255, green: 110/255, blue: 255/255, alpha: 1)]
     }
     
     func getEvents() {
@@ -98,6 +98,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         header.contentView.backgroundColor = UIColor.white
     }
     
+    //TODO: Add to global function
     func getDateString(date: Date, format: String) -> String {
         dateFormatter.dateFormat = format
         return dateFormatter.string(from: date)

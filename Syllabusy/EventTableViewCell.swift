@@ -24,11 +24,6 @@ class EventTableViewCell: UITableViewCell {
         view.layer.shadowColor = UIColor.black.withAlphaComponent(0.2).cgColor
         view.layer.shadowOffset = CGSize(width: 2, height: 2)
         view.layer.shadowOpacity = 0.8
-        
-        classLabel.adjustsFontSizeToFitWidth = true
-        dayLabel.adjustsFontSizeToFitWidth = true
-        dateLabel.adjustsFontSizeToFitWidth = true
-        timeLabel.adjustsFontSizeToFitWidth = true
     }
 
 }

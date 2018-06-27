@@ -15,7 +15,7 @@ import AVFoundation
 class SYLBUploadViewController: UIViewController, G8TesseractDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CropViewControllerDelegate {
     
     // TODO: Make private vars
-    // UI elements for testing
+    // TODO: remove UI elements for testing
     lazy var image = UIImage(named: "sampleDates.jpg")?.g8_blackAndWhite()
     let imagePicker = UIImagePickerController()
     
@@ -26,17 +26,6 @@ class SYLBUploadViewController: UIViewController, G8TesseractDelegate, UIImagePi
     lazy var syllabus = Syllabus()
     var instruction = "Upload Dates"
     
-    // TODO: Change
-    lazy var textRectangleRequest: VNDetectTextRectanglesRequest = {
-        let textRequest = VNDetectTextRectanglesRequest(completionHandler: self.handleTextIdentification)
-        textRequest.reportCharacterBoxes = false
-        return textRequest
-    }()
-    
-    @objc func handleCancel() {
-        dismiss(animated: true)
-    }
-    
     // Currently taking sample images and setting it.
     // TODO: Move Image setting to Func
     // TODO: Grab user chosen images
@@ -44,9 +33,6 @@ class SYLBUploadViewController: UIViewController, G8TesseractDelegate, UIImagePi
         super.viewDidLoad()
         
         navigationController?.navigationBar.barTintColor = UIColor.white
-        
-        let leftButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(self.handleCancel))
-        self.navigationItem.leftBarButtonItem = leftButton
         
         instructionLabel.text = instruction
         imageView.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
@@ -59,6 +45,13 @@ class SYLBUploadViewController: UIViewController, G8TesseractDelegate, UIImagePi
         imageView.isUserInteractionEnabled = true
         imageView.addGestureRecognizer(tapGestureRecognizer)
     }
+    
+    // TODO: Change
+    lazy var textRectangleRequest: VNDetectTextRectanglesRequest = {
+        let textRequest = VNDetectTextRectanglesRequest(completionHandler: self.handleTextIdentification)
+        textRequest.reportCharacterBoxes = false
+        return textRequest
+    }()
     
     func presentCropViewController(image: UIImage) {
         let cropViewController = CropViewController(image: image)

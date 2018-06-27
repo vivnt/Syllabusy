@@ -25,12 +25,20 @@ class SYLBFormViewController: UIViewController, UITableViewDelegate, UITableView
         
         let rightButton = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(self.nextAction))
         self.navigationItem.rightBarButtonItem = rightButton
+        let leftButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(self.handleCancel))
+        self.navigationItem.leftBarButtonItem = leftButton
+        
+        navigationController?.navigationBar.barTintColor = UIColor.white
         
         self.dataArray = [
             [titleKey : "All-Day"]
         ]
         
         dateFormatter.dateFormat = "h:mm a"
+    }
+    
+    @objc func handleCancel() {
+        dismiss(animated: true)
     }
     
     @objc func nextAction() {

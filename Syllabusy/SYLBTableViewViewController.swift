@@ -12,14 +12,23 @@ import EventKit
 class SYLBTableViewViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     lazy var syllabus = Syllabus()
+    let dateFormatter = DateFormatter()
     
     // MARK: - Table view data source
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let rightButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(self.sendToCal))
-        self.navigationItem.rightBarButtonItem = rightButton
+        self.title = "Review"
+        navigationController?.navigationBar.barTintColor = UIColor.white
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.font: UIFont(name: "Helvetica", size: 25)!, NSAttributedStringKey.foregroundColor: UIColor(red: 93/255, green: 93/255, blue: 93/255, alpha: 1)]
+        
+//        let rightButton = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(self.editEvents))
+//        self.navigationItem.rightBarButtonItem = rightButton
+    }
+    
+    @IBAction func doneButton(_ sender: Any) {
+        sendToCal()
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -32,13 +41,32 @@ class SYLBTableViewViewController: UIViewController, UITableViewDelegate, UITabl
         return syllabus.assignments.count
     }
     
+    //TODO: Check allDay variable to see if there is any dulplicates for efficiency
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "assignmentCell", for: indexPath)
-        cell.textLabel?.text = syllabus.assignments[indexPath.row]
-        cell.detailTextLabel?.text = dateToString(date: syllabus.dates[indexPath.row])
+        let cell = tableView.dequeueReusableCell(withIdentifier: "eventCell", for: indexPath) as! EventTableViewCell
+        cell.assignmentLabel.text = syllabus.assignments[indexPath.row]
+        cell.dayLabel.text = getDateString(date: syllabus.dates[indexPath.row], format: "E")
+        cell.dateLabel.text = getDateString(date: syllabus.dates[indexPath.row], format: "MMM d")
+        if (syllabus.allDay == true) {
+            cell.timeLabel.text = ""
+        } else {
+            cell.timeLabel.text = getDateString(date: syllabus.dates[indexPath.row], format: "h:mm a")
+        }
+        cell.classLabel.text = ""
         return cell
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 81
+    }
+    
+    //TODO: Add to global function
+    func getDateString(date: Date, format: String) -> String {
+        dateFormatter.dateFormat = format
+        return dateFormatter.string(from: date)
+    }
+    
+    //TODO: Merge with above
     func dateToString(date: Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMM d, yyyy"
@@ -46,7 +74,11 @@ class SYLBTableViewViewController: UIViewController, UITableViewDelegate, UITabl
         return dateString
     }
     
-    @objc func sendToCal() {
+    @objc func editEvents() {
+        
+    }
+    
+    func sendToCal() {
         let eventStore = EKEventStore();
         
         for index in syllabus.dates.indices {
