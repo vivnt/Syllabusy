@@ -29,8 +29,10 @@ class SYLBFormViewController: UIViewController, UITableViewDelegate, UITableView
         self.navigationItem.leftBarButtonItem = leftButton
         
         navigationController?.navigationBar.barTintColor = UIColor.white
+        navigationController?.title = "Upload"
         
         self.dataArray = [
+//            [titleKey : "Class Name"],
             [titleKey : "All-Day"]
         ]
         
@@ -74,11 +76,16 @@ class SYLBFormViewController: UIViewController, UITableViewDelegate, UITableView
         
         if (indexPath.section == 0) {
             switch (dataArray[indexPath.row]["title"] as! String) {
+            case "Class Name":
+                let cell = tableView.dequeueReusableCell(withIdentifier: "classNameCell", for: indexPath)
+                
+                return cell
             case "All-Day":
                 let cell = tableView.dequeueReusableCell(withIdentifier: "allDayCell", for: indexPath)
                 cell.textLabel?.text = "All-Day"
                 
                 let switchView = UISwitch(frame: .zero)
+                switchView.onTintColor = UIColor(displayP3Red: 188/255, green: 110/255, blue: 255/255, alpha: 0.9)
                 switchView.setOn(allDay, animated: true)
                 switchView.addTarget(self, action: #selector(self.switchChanged(_:)), for: .valueChanged)
                 cell.accessoryView = switchView
@@ -169,7 +176,7 @@ class SYLBFormViewController: UIViewController, UITableViewDelegate, UITableView
         if (pickerIndex == indexPath.row) {
             return (tableView.dequeueReusableCell(withIdentifier: "datePickerCell")?.frame.height)!
         } else {
-            return 44
+            return 61
         }
     }
     
@@ -192,6 +199,7 @@ class SYLBFormViewController: UIViewController, UITableViewDelegate, UITableView
                 self.tableView.deleteRows(at: [IndexPath(row: dataArray.count-index, section: 0)], with: .fade)
             }
             self.dataArray = [
+//                [titleKey : "Class Name"],
                 [titleKey : "All-Day"]
             ]
             self.pickerIndex = 100
@@ -201,6 +209,7 @@ class SYLBFormViewController: UIViewController, UITableViewDelegate, UITableView
             self.tableView.insertRows(at: [IndexPath(row: 1, section: 0)], with: .fade)
             self.tableView.insertRows(at: [IndexPath(row: 2, section: 0)], with: .fade)
             self.dataArray = [
+//                [titleKey : "Class Name"],
                 [titleKey : "All-Day"],
                 [titleKey : "Start Date",
                  dateKey : Date()],

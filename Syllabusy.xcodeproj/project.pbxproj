@@ -24,6 +24,7 @@
 		B3A7B67F202238190021D2EA /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = B3A7B67E202238190021D2EA /* tessdata */; };
 		B3C8231E20D2D4BF0069C530 /* SYLBFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C8231D20D2D4BF0069C530 /* SYLBFormViewController.swift */; };
 		B3D5BEE920754D3D00BF1B7A /* SYLBUploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D5BEE820754D3D00BF1B7A /* SYLBUploadViewController.swift */; };
+		B3EC641B20F0127500F5C593 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3EC641A20F0127500F5C593 /* StoreKit.framework */; };
 		F6CC6A969F8B452E1D03DE8A /* Pods_Syllabusy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A6F4CE22F6EFDD004ED5371 /* Pods_Syllabusy.framework */; };
 /* End PBXBuildFile section */
 
@@ -48,6 +49,7 @@
 		B3A7B67E202238190021D2EA /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
 		B3C8231D20D2D4BF0069C530 /* SYLBFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SYLBFormViewController.swift; sourceTree = "<group>"; };
 		B3D5BEE820754D3D00BF1B7A /* SYLBUploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SYLBUploadViewController.swift; sourceTree = "<group>"; };
+		B3EC641A20F0127500F5C593 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		CAF2150A8CC27569D759C395 /* Pods-Syllabusy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Syllabusy.release.xcconfig"; path = "Pods/Target Support Files/Pods-Syllabusy/Pods-Syllabusy.release.xcconfig"; sourceTree = "<group>"; };
 		D821C27C9425FE035939EBCD /* Pods-Syllabusy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Syllabusy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Syllabusy/Pods-Syllabusy.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -58,6 +60,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F6CC6A969F8B452E1D03DE8A /* Pods_Syllabusy.framework in Frameworks */,
+				B3EC641B20F0127500F5C593 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,6 +70,7 @@
 		4A6F90A2AA85608647B4C789 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B3EC641A20F0127500F5C593 /* StoreKit.framework */,
 				4A6F4CE22F6EFDD004ED5371 /* Pods_Syllabusy.framework */,
 			);
 			name = Frameworks;
@@ -160,6 +164,11 @@
 					B391E3F620191CDC004279E0 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};

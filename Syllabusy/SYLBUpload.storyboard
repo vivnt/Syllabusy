@@ -19,33 +19,77 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upload Dates" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QYs-eq-ERe">
-                                <rect key="frame" x="135" y="89" width="104" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Hcl-1S-WpD">
+                                <rect key="frame" x="62.5" y="457" width="250" height="135"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wXq-qa-zHI">
+                                        <rect key="frame" x="0.0" y="0.0" width="250" height="60"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Take a Photo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aM2-22-cV6">
+                                                <rect key="frame" x="66.5" y="18" width="117" height="23"/>
+                                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="20"/>
+                                                <color key="textColor" red="0.36470588240000001" green="0.36470588240000001" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="250" id="Kr9-AO-D0G"/>
+                                            <constraint firstItem="aM2-22-cV6" firstAttribute="centerY" secondItem="wXq-qa-zHI" secondAttribute="centerY" id="OuC-AV-2NB"/>
+                                            <constraint firstItem="aM2-22-cV6" firstAttribute="centerX" secondItem="wXq-qa-zHI" secondAttribute="centerX" id="jqL-uN-gvh"/>
+                                            <constraint firstAttribute="height" constant="60" id="stu-Bb-C1t"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gV4-Sv-rYT">
+                                        <rect key="frame" x="0.0" y="75" width="250" height="60"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upload from Gallery" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RB4-GO-h5V">
+                                                <rect key="frame" x="36.5" y="18" width="178" height="23"/>
+                                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="20"/>
+                                                <color key="textColor" red="0.36470588240000001" green="0.36470588240000001" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="250" id="Qce-HX-UtQ"/>
+                                            <constraint firstAttribute="height" constant="60" id="To2-ug-2UB"/>
+                                            <constraint firstItem="RB4-GO-h5V" firstAttribute="centerY" secondItem="gV4-Sv-rYT" secondAttribute="centerY" id="bZH-tx-DXJ"/>
+                                            <constraint firstItem="RB4-GO-h5V" firstAttribute="centerX" secondItem="gV4-Sv-rYT" secondAttribute="centerX" id="usn-1W-sKB"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Snap a photo of the table on your Syllabus" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gut-a8-qlj">
+                                <rect key="frame" x="27.5" y="379" width="320.5" height="20"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
+                                <color key="textColor" red="0.72148895260000001" green="0.72161453959999999" blue="0.72148102520000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5Gg-HE-I3o">
-                                <rect key="frame" x="62" y="165.5" width="250" height="400"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="syllabus" translatesAutoresizingMaskIntoConstraints="NO" id="Cgk-93-THw">
+                                <rect key="frame" x="89" y="89" width="223" height="255"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="250" id="2xs-ob-7x1"/>
-                                    <constraint firstAttribute="height" constant="400" id="fYP-Lz-PXa"/>
+                                    <constraint firstAttribute="width" constant="223" id="Mdo-ff-uMK"/>
+                                    <constraint firstAttribute="height" constant="255" id="mAO-la-xnq"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="QYs-eq-ERe" firstAttribute="top" secondItem="uJv-FF-Tjt" secondAttribute="top" constant="25" id="69E-YX-RFp"/>
-                            <constraint firstItem="5Gg-HE-I3o" firstAttribute="centerX" secondItem="uJv-FF-Tjt" secondAttribute="centerX" id="eW6-in-adg"/>
-                            <constraint firstItem="QYs-eq-ERe" firstAttribute="centerX" secondItem="uJv-FF-Tjt" secondAttribute="centerX" id="kyn-7o-j07"/>
-                            <constraint firstItem="5Gg-HE-I3o" firstAttribute="centerY" secondItem="uJv-FF-Tjt" secondAttribute="centerY" id="ro7-2N-HqX"/>
+                            <constraint firstItem="uJv-FF-Tjt" firstAttribute="trailing" secondItem="Cgk-93-THw" secondAttribute="trailing" constant="63" id="6vR-ef-YwE"/>
+                            <constraint firstItem="uJv-FF-Tjt" firstAttribute="bottom" secondItem="Hcl-1S-WpD" secondAttribute="bottom" constant="75" id="K3C-6f-fQt"/>
+                            <constraint firstItem="gut-a8-qlj" firstAttribute="centerX" secondItem="uJv-FF-Tjt" secondAttribute="centerX" id="MKs-1F-VK6"/>
+                            <constraint firstItem="Cgk-93-THw" firstAttribute="top" secondItem="uJv-FF-Tjt" secondAttribute="top" constant="25" id="SrZ-BZ-61X"/>
+                            <constraint firstItem="Cgk-93-THw" firstAttribute="leading" secondItem="uJv-FF-Tjt" secondAttribute="leading" constant="89" id="gZZ-JU-liq"/>
+                            <constraint firstItem="Hcl-1S-WpD" firstAttribute="centerX" secondItem="uJv-FF-Tjt" secondAttribute="centerX" id="tVK-I7-PFl"/>
+                            <constraint firstItem="gut-a8-qlj" firstAttribute="top" secondItem="Cgk-93-THw" secondAttribute="bottom" constant="35" id="yMy-Pv-KTC"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="uJv-FF-Tjt"/>
                     </view>
                     <navigationItem key="navigationItem" id="ybt-Py-dZw"/>
                     <connections>
-                        <outlet property="imageView" destination="5Gg-HE-I3o" id="duj-aA-YSf"/>
-                        <outlet property="instructionLabel" destination="QYs-eq-ERe" id="iq6-Qp-HFB"/>
+                        <outlet property="galleryView" destination="gV4-Sv-rYT" id="MMl-mf-sag"/>
+                        <outlet property="photoView" destination="wXq-qa-zHI" id="Kt2-AB-RSg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dlg-Vg-N8S" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -192,5 +236,6 @@
     </scenes>
     <resources>
         <image name="doneButton" width="50" height="50"/>
+        <image name="syllabus" width="650" height="756"/>
     </resources>
 </document>

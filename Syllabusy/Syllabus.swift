@@ -25,7 +25,6 @@ struct Syllabus {
     
     init() {
         let eventStore = EKEventStore();
-        print(eventStore.defaultCalendarForNewEvents)
         self.selectedCalendar = eventStore.defaultCalendarForNewEvents!
         self.selectedCalendarName = self.selectedCalendar.title
     }

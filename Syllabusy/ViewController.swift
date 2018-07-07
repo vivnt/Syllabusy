@@ -39,9 +39,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.calendars = EKEventStore().calendars(for: EKEntityType.event).sorted() { (cal1, cal2) -> Bool in
             return cal1.title < cal2.title
         }
-        let oneMonthAhead = Calendar.current.date(byAdding: .month, value: 4, to: Date())
+        let threeMonthAhead = Calendar.current.date(byAdding: .month, value: 3, to: Date())
         
-        let eventsPredicate = eventStore.predicateForEvents(withStart: Date(), end: oneMonthAhead!, calendars: self.calendars)
+        let eventsPredicate = eventStore.predicateForEvents(withStart: Date(), end: threeMonthAhead!, calendars: self.calendars)
         self.events = eventStore.events(matching: eventsPredicate).sorted {
             (e1: EKEvent, e2: EKEvent) in
             
@@ -66,12 +66,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return 81
     }
     
+    // TODO: Currently only upcoming for the next month
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if (section == 0) {
-            return "TODAY"
-        } else {
-            return "UPCOMING"
-        }
+//        if (section == 0) {
+//            return "TODAY"
+//        } else {
+            return "UPCOMING NEXT 3 MONTHS"
+//        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -95,6 +96,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let header = view as! UITableViewHeaderFooterView
         header.textLabel!.font=title.font
         header.textLabel!.textColor=title.textColor
+        header.tintColor = UIColor(displayP3Red: 93/255, green: 93/255, blue: 93/255, alpha: 0.9)
         header.contentView.backgroundColor = UIColor.white
     }
     

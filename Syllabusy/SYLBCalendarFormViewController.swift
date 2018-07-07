@@ -41,6 +41,25 @@ class SYLBCalendarFormViewController: UIViewController, UITableViewDelegate, UIT
         return 1
     }
     
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Calendars"
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 61
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        let title = UILabel()
+        title.font = UIFont(name: "Helvetica", size: 13)!
+        
+        let header = view as! UITableViewHeaderFooterView
+        header.textLabel!.font=title.font
+        header.textLabel!.textColor=title.textColor
+        header.tintColor = UIColor(displayP3Red: 93/255, green: 93/255, blue: 93/255, alpha: 0.9)
+        header.contentView.backgroundColor = UIColor.white
+    }
+    
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) {
             cell.accessoryType = .none

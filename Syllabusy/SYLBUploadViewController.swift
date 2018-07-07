@@ -19,12 +19,13 @@ class SYLBUploadViewController: UIViewController, G8TesseractDelegate, UIImagePi
     lazy var image = UIImage(named: "sampleDates.jpg")?.g8_blackAndWhite()
     let imagePicker = UIImagePickerController()
     
+    @IBOutlet var photoView: UIView!
+    @IBOutlet var galleryView: UIView!
     @IBOutlet var instructionLabel: UILabel!
-    @IBOutlet var imageView: UIImageView!
+    //    @IBOutlet var imageView: UIImageView!
     var recognizedText = [String]()
     var dateFormats = ["MM dd", "MMM d", "MMM d yyyy", "MMM d yy", "d MMM yy", "d MMM yyyy", "d MMM", "yyyy MMM d", "yy MMM d", "d MMM yyyy", "d MMM yy", "MM dd yyyy"]
     lazy var syllabus = Syllabus()
-    var instruction = "Upload Dates"
     
     // Currently taking sample images and setting it.
     // TODO: Move Image setting to Func
@@ -32,19 +33,35 @@ class SYLBUploadViewController: UIViewController, G8TesseractDelegate, UIImagePi
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationController?.navigationBar.barTintColor = UIColor.white
+        photoView.layer.cornerRadius = 5.0
+        photoView.layer.borderColor = UIColor(displayP3Red: 93/255, green: 93/255, blue: 93/255, alpha: 0.9).cgColor
+        photoView.layer.borderWidth = 1.0
+        let photoTapGesture = UITapGestureRecognizer(target: self, action: #selector(photoTapAction(tapGestureRecognizer:)))
+        photoView.isUserInteractionEnabled = true
+        photoView.addGestureRecognizer(photoTapGesture)
         
-        instructionLabel.text = instruction
-        imageView.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
-        imageView.image = UIImage(named: "placeHolderImage.png")
+        galleryView.layer.cornerRadius = 5.0
+        galleryView.layer.borderColor = UIColor(displayP3Red: 93/255, green: 93/255, blue: 93/255, alpha: 0.9).cgColor
+        galleryView.layer.borderWidth = 1.0
+        let galleryTapGesture = UITapGestureRecognizer(target: self, action: #selector(galleryTapAction(tapGestureRecognizer:)))
+        galleryView.isUserInteractionEnabled = true
+        galleryView.addGestureRecognizer(galleryTapGesture)
+        
+        
+        navigationController?.navigationBar.barTintColor = UIColor.white
+        navigationController?.title = "Upload"
+        //imageView.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        //imageView.image = UIImage(named: "placeHolderImage.png")
         
         // TODO: Remove after testing
         imagePicker.delegate = self
         
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(selectImage(tapGestureRecognizer:)))
-        imageView.isUserInteractionEnabled = true
-        imageView.addGestureRecognizer(tapGestureRecognizer)
+        //let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(selectImage(tapGestureRecognizer:)))
+        //imageView.isUserInteractionEnabled = true
+        //imageView.addGestureRecognizer(tapGestureRecognizer)
     }
+    
+    
     
     // TODO: Change
     lazy var textRectangleRequest: VNDetectTextRectanglesRequest = {
@@ -60,43 +77,36 @@ class SYLBUploadViewController: UIViewController, G8TesseractDelegate, UIImagePi
     }
     
     func cropViewController(_ cropViewController: CropViewController, didCropToImage image: UIImage, withRect cropRect: CGRect, angle: Int) {
-        imageView.image = image
+        //imageView.image = image
         self.image = image
-        imageView.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        //imageView.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         dismiss(animated: true)
         startRecognition()
     }
     
-    @objc func selectImage(tapGestureRecognizer: UITapGestureRecognizer) {
+    // TODO: Test Camera Feature
+    @objc func photoTapAction(tapGestureRecognizer: UITapGestureRecognizer) {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
-        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { action in }
-        alertController.addAction(cancelAction)
+        let cameraMediaType = AVMediaType.video
+        let cameraAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: cameraMediaType)
         
-        let takePhotoAction = UIAlertAction(title: "Take Photo", style: .default) { action in
-            let cameraMediaType = AVMediaType.video
-            let cameraAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: cameraMediaType)
-            
-            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) && (cameraAuthorizationStatus == AVAuthorizationStatus.authorized || cameraAuthorizationStatus == AVAuthorizationStatus.notDetermined) {
-                imagePicker.sourceType = UIImagePickerControllerSourceType.camera
-                imagePicker.allowsEditing = false
-                self.present(imagePicker, animated: true, completion: nil)
-            } else {
-                let alert  = UIAlertController(title: "Warning", message: "No camera found. Be sure to enable permissions for the camera in settings.", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
-            }
-        }
-        alertController.addAction(takePhotoAction)
-        
-        let choosePhotoAction = UIAlertAction(title: "Choose Photo", style: .default) { action in
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) && (cameraAuthorizationStatus == AVAuthorizationStatus.authorized || cameraAuthorizationStatus == AVAuthorizationStatus.notDetermined) {
+            imagePicker.sourceType = UIImagePickerControllerSourceType.camera
             imagePicker.allowsEditing = false
-            self.present(imagePicker, animated: true)
+            self.present(imagePicker, animated: true, completion: nil)
+        } else {
+            let alert  = UIAlertController(title: "Warning", message: "No camera found. Be sure to enable permissions for the camera in settings.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
-        alertController.addAction(choosePhotoAction)
-        
-        self.present(alertController, animated: true)
+    }
+    
+    @objc func galleryTapAction(tapGestureRecognizer: UITapGestureRecognizer) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = false
+        self.present(imagePicker, animated: true)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
@@ -104,7 +114,7 @@ class SYLBUploadViewController: UIViewController, G8TesseractDelegate, UIImagePi
         guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else {
             fatalError("Couldn't load image")
         }
-        self.imageView.image = image
+        //self.imageView.image = image
         self.detectText(image: image)
     }
     
@@ -142,7 +152,7 @@ class SYLBUploadViewController: UIViewController, G8TesseractDelegate, UIImagePi
         guard let ciImage = CIImage(image: uiImage)
             else { fatalError("can't create CIImage from UIImage") }
         
-        self.imageView.image = uiImage
+        //        self.imageView.image = uiImage
         // Create vision image request
         // TODO: Get image from handler instead of making a global value
         let handler = VNImageRequestHandler(ciImage: ciImage, orientation: CGImagePropertyOrientation(rawValue: UInt32(Int32(uiImage.imageOrientation.rawValue)))!)
