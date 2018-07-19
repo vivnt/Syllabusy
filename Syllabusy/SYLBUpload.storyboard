@@ -89,6 +89,7 @@
                     <navigationItem key="navigationItem" id="ybt-Py-dZw"/>
                     <connections>
                         <outlet property="galleryView" destination="gV4-Sv-rYT" id="MMl-mf-sag"/>
+                        <outlet property="photo" destination="Cgk-93-THw" id="hMx-mV-aQo"/>
                         <outlet property="photoView" destination="wXq-qa-zHI" id="Kt2-AB-RSg"/>
                     </connections>
                 </viewController>

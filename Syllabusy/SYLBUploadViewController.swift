@@ -15,21 +15,18 @@ import AVFoundation
 class SYLBUploadViewController: UIViewController, G8TesseractDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CropViewControllerDelegate {
     
     // TODO: Make private vars
-    // TODO: remove UI elements for testing
-    lazy var image = UIImage(named: "sampleDates.jpg")?.g8_blackAndWhite()
+    lazy var image = UIImage()
     let imagePicker = UIImagePickerController()
     
+    @IBOutlet var photo: UIImageView!
     @IBOutlet var photoView: UIView!
     @IBOutlet var galleryView: UIView!
     @IBOutlet var instructionLabel: UILabel!
-    //    @IBOutlet var imageView: UIImageView!
+    var userChosenImage = UIImage()
     var recognizedText = [String]()
     var dateFormats = ["MM dd", "MMM d", "MMM d yyyy", "MMM d yy", "d MMM yy", "d MMM yyyy", "d MMM", "yyyy MMM d", "yy MMM d", "d MMM yyyy", "d MMM yy", "MM dd yyyy"]
     lazy var syllabus = Syllabus()
     
-    // Currently taking sample images and setting it.
-    // TODO: Move Image setting to Func
-    // TODO: Grab user chosen images
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -50,18 +47,14 @@ class SYLBUploadViewController: UIViewController, G8TesseractDelegate, UIImagePi
         
         navigationController?.navigationBar.barTintColor = UIColor.white
         navigationController?.title = "Upload"
-        //imageView.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
-        //imageView.image = UIImage(named: "placeHolderImage.png")
         
-        // TODO: Remove after testing
-        imagePicker.delegate = self
-        
-        //let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(selectImage(tapGestureRecognizer:)))
-        //imageView.isUserInteractionEnabled = true
-        //imageView.addGestureRecognizer(tapGestureRecognizer)
+        let rightButton = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(self.nextAction))
+        self.navigationItem.rightBarButtonItem = rightButton
     }
     
-    
+    @objc func nextAction() {
+        detectText(image: self.userChosenImage)
+    }
     
     // TODO: Change
     lazy var textRectangleRequest: VNDetectTextRectanglesRequest = {
@@ -77,15 +70,13 @@ class SYLBUploadViewController: UIViewController, G8TesseractDelegate, UIImagePi
     }
     
     func cropViewController(_ cropViewController: CropViewController, didCropToImage image: UIImage, withRect cropRect: CGRect, angle: Int) {
-        //imageView.image = image
         self.image = image
-        //imageView.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         dismiss(animated: true)
         startRecognition()
     }
     
-    // TODO: Test Camera Feature
     @objc func photoTapAction(tapGestureRecognizer: UITapGestureRecognizer) {
+        
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         let cameraMediaType = AVMediaType.video
@@ -114,8 +105,8 @@ class SYLBUploadViewController: UIViewController, G8TesseractDelegate, UIImagePi
         guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else {
             fatalError("Couldn't load image")
         }
-        //self.imageView.image = image
-        self.detectText(image: image)
+        self.photo.image = image
+        userChosenImage = image
     }
     
     func detectText(image: UIImage) {
@@ -147,7 +138,7 @@ class SYLBUploadViewController: UIViewController, G8TesseractDelegate, UIImagePi
     }
     
     func startRecognition() {
-        guard let uiImage = self.image?.g8_blackAndWhite()
+        guard let uiImage = self.image.g8_blackAndWhite()
             else { fatalError("no image from image picker") }
         guard let ciImage = CIImage(image: uiImage)
             else { fatalError("can't create CIImage from UIImage") }
