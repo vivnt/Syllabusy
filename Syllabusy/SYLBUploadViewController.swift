@@ -70,9 +70,9 @@ class SYLBUploadViewController: UIViewController, G8TesseractDelegate, UIImagePi
     }
     
     func cropViewController(_ cropViewController: CropViewController, didCropToImage image: UIImage, withRect cropRect: CGRect, angle: Int) {
-        self.image = image
+        self.photo.image = image
+        userChosenImage = image
         dismiss(animated: true)
-        startRecognition()
     }
     
     @objc func photoTapAction(tapGestureRecognizer: UITapGestureRecognizer) {
@@ -105,8 +105,7 @@ class SYLBUploadViewController: UIViewController, G8TesseractDelegate, UIImagePi
         guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else {
             fatalError("Couldn't load image")
         }
-        self.photo.image = image
-        userChosenImage = image
+        presentCropViewController(image: image)
     }
     
     func detectText(image: UIImage) {
@@ -115,7 +114,7 @@ class SYLBUploadViewController: UIViewController, G8TesseractDelegate, UIImagePi
         let request: VNDetectTextRectanglesRequest =
             VNDetectTextRectanglesRequest(completionHandler: { [unowned self] (request, error) in
                 if (error != nil) {
-                    print("Got Error In Run Text Dectect Request :(")
+                    print("Got Error In Run Text Detect Request :(")
                 } else {
                     guard let results = request.results as? Array<VNTextObservation> else {
                         fatalError("Unexpected result type from VNDetectTextRectanglesRequest")

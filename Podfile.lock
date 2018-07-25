@@ -1,5 +1,5 @@
 PODS:
-  - CropViewController (2.3.6)
+  - CropViewController (2.3.7)
   - TesseractOCRiOS (4.0.0)
 
 DEPENDENCIES:
@@ -7,7 +7,7 @@ DEPENDENCIES:
   - TesseractOCRiOS (= 4.0.0)
 
 SPEC CHECKSUMS:
-  CropViewController: e6d4bd512d15a1709e9ddf71fe7d98ffd05dda0f
+  CropViewController: a9d579b526926c4e1caf754a89a9ac1c20aaa8eb
   TesseractOCRiOS: 90638afbe43d082433f2e76b384c7901d23956df
 
 PODFILE CHECKSUM: 67c9d1ad4872f1019355161b99a4b97f476fe795
